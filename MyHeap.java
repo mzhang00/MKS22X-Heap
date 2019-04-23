@@ -25,6 +25,10 @@ public class MyHeap{
         }
     }
 
+    private static void pushUp(int[]data,int index){
+        //
+    }
+
     private static boolean isLeaf(int size, int index){
         if ((2 * index) + 1 >= size){
             return true;
