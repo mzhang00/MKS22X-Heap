@@ -47,6 +47,26 @@ public class MyHeap{
         }
     }
 
+    public static void heapsort(int[] data){
+        if (data.length <= 1){
+            return;
+        }
+        int size = data.length - 1;
+        heapify(data);
+        while (size >= 0){
+            int temp = data[0];
+            data[0] = data[size];
+            data[size] = temp;    
+            pushDown(data, size, 0);
+            size--;
+        }
+        if (data[0] > data[1]){
+            int temp = data[0];
+            data[0] = data[1];
+            data[1] = temp;    
+        }
+    }
+
     private static boolean isRoot(int index){
         return index == 0;
     }
@@ -78,11 +98,26 @@ public class MyHeap{
     }
 
     public static void main(String[] args){
-        int[] arr1 = {67, 81, 36, 69, 71, 68, 13, 64, 44, 46, 75, 35, 32, 58, 25, 50, 49, 88, 21, 65};
+        /*int[] arr1 = {67, 81, 36, 69, 71, 68, 13, 64, 44, 46, 75, 35, 32, 58, 25, 50, 49, 88, 21, 65};
         int[] arr = {76, 30, 56, 51, 48, 49, 8, 33, 72, 86, 95, 50, 14, 6, 44, 52, 91, 75, 3, 22};
-        System.out.println(HeapHelp.toString(arr));
+        int[] arr2 = {12, 23, 3, 45, 1, 2, 6, 4};
+        int[] arr3 = {8, 6, 44, 52, 91, 75, 3};
+        int[] arr4 = {1};
+        int[] arr5 = {};
+        int[] arr6 = {1, 3, 2};
+        /*System.out.println(HeapHelp.toString(arr));
         System.out.println("--------------------------------------------");
-        heapify(arr);
-        System.out.println(HeapHelp.toString(arr));
+        *//*heapify(arr2);
+        for (int i : arr2){
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        System.out.println(HeapHelp.toString(arr2));
+        System.out.println("--------------------------------------------");
+        *//*heapsort(arr6);
+        for (int i : arr6){
+            System.out.print(i + " ");
+        }
+        System.out.println();*/
     }
 }
