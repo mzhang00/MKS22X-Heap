@@ -1,28 +1,29 @@
 import java.util.Arrays;
+import java.util.Random;
 
-public class MyHeap{
+public class MyHeap{    
     private static void pushDown(int[] data, int size, int index){
-        while (!(isLeaf(size, index))){
-            if (data[index] > data[getChild(1, index)] && data[index] > data[getChild(2, index)]){
-                return;
-            }
-            if (getNumOfChildren(size, index) == 2){
-                if (data[getChild(2, index)] < data[getChild(1, index)]){
+        if (getNumOfChildren(size, index) == 2){
+            if (data[getChild(2, index)] < data[getChild(1, index)]){
+                if (data[index] < data[getChild(1, index)]){
                     int temp = data[index];
                     data[index] = data[getChild(1, index)];
                     data[getChild(1, index)] = temp;
-                    index = getChild(1, index);
-                }else{
+                    pushDown(data, size, getChild(1, index));
+                }
+            }else{
+                if (data[index] < data[getChild(2, index)]){
                     int temp = data[index];
                     data[index] = data[getChild(2, index)];
                     data[getChild(2, index)] = temp;
-                    index = getChild(2, index);
+                    pushDown(data, size, getChild(2, index));
                 }
-            }else if (getNumOfChildren(size, index) == 1){
+            }
+        }else if (getNumOfChildren(size, index) == 1){
+            if (data[index] < data[getChild(1, index)]){
                 int temp = data[index];
                 data[index] = data[getChild(1, index)];
                 data[getChild(1, index)] = temp;
-                index = getChild(1, index);
             }
         }
     }
@@ -40,19 +41,11 @@ public class MyHeap{
         }
     }
 
-    //THIS WORKS BUT IS O(nlogn)
     public static void heapify(int[] data){
-        int size = data.length;
-        while (size > 0){
-            for (int i = data.length - 1; i > -1; i--){
-                pushUp(data, i);
-            }
-            size = size / 2;
+        for (int i = data.length - 1; i > -1; i--){
+            pushDown(data, data.length, i);
         }
     }
-
-    //public static void heapify(int[] data){
-    //}
 
     public static void heapsort(int[] data){
         if (data.length <= 1){
@@ -114,6 +107,7 @@ public class MyHeap{
         int[] arr6 = {2993536, 6693945, 1193949, 4172304, 5869904, 3895615, 5219638, 2580467, 861059, 6521467, 7682276, 8499675, 193961, 4880936, 7329034, 6615093, 2245677, 3892264, 8952947, 1254224, 3719254, 5901205, 718206, 1193834, 645117, 5470890, 1574705, 3295808, 6205671, 2016870, 7369106, 2228194, 5191338, 6912940, 6844802, 5637363, 2826161, 2418829, 6505528, 6364368, 7288698, 7345152, 6003491, 5927353, 143844, 7746271, 3253931, 4888096, 2551921, 8725098, 3262965, 1543705, 6148019, 6107366, 6246941, 3515643, 8327852, 6317233, 4035750, 2738222, 9943827, 1367529, 9460975, 8852545, 8657640, 5032440, 6121382, 7761218, 3616102, 9856396, 4524578, 3227506, 3228092, 2465934, 9288196, 5654512, 6422426, 9622665, 6144961, 6618212, 2212790, 7234331, 75234, 5576231, 8792849, 9819551, 4426721, 3356411, 2732967, 1226163, 1635256, 4627155, 7563187, 731499, 6523532, 6987989, 2055704, 5861602, 6063858, 3275425};
         int[] arr7 = {2993536, 6693945, 1193949, 4172304, 5869904, 3895615, 5219638, 2580467, 861059, 6521467, 7682276, 8499675, 193961, 4880936, 7329034, 6615093, 2245677, 3892264, 8952947, 1254224, 3719254, 5901205, 718206, 1193834, 645117, 5470890, 1574705, 3295808, 6205671, 2016870, 7369106, 2228194, 5191338, 6912940, 6844802, 5637363, 2826161, 2418829, 6505528, 6364368, 7288698, 7345152, 6003491, 5927353, 143844, 7746271, 3253931, 4888096, 2551921, 8725098, 3262965, 1543705, 6148019, 6107366, 6246941, 3515643, 8327852, 6317233, 4035750, 2738222, 9943827, 1367529, 9460975, 8852545, 8657640, 5032440, 6121382, 7761218, 3616102, 9856396, 4524578, 3227506, 3228092, 2465934, 9288196, 5654512, 6422426, 9622665, 6144961, 6618212, 2212790, 7234331, 75234, 5576231, 8792849, 9819551, 4426721, 3356411, 2732967, 1226163, 1635256, 4627155, 7563187, 731499, 6523532, 6987989, 2055704, 5861602, 6063858, 3275425};
         int[] arr8 = {1,1,1,1,1,1,1,1,2,1,1,1,1,1};
+        
         /*System.out.println(HeapHelp.toString(arr));
         System.out.println("--------------------------------------------");
         */
