@@ -40,15 +40,19 @@ public class MyHeap{
         }
     }
 
-    //NEED TO FIX HEAPIFY
+    //THIS WORKS BUT IS O(nlogn)
     public static void heapify(int[] data){
-        for (int i = data.length - 1; i > -1; i--){
-            pushUp(data, i);
-        }
-        for (int i = data.length - 1; i > -1; i--){
-            pushUp(data, i);
+        int size = data.length;
+        while (size > 0){
+            for (int i = data.length - 1; i > -1; i--){
+                pushUp(data, i);
+            }
+            size = size / 2;
         }
     }
+
+    //public static void heapify(int[] data){
+    //}
 
     public static void heapsort(int[] data){
         if (data.length <= 1){
@@ -112,12 +116,15 @@ public class MyHeap{
         int[] arr8 = {1,1,1,1,1,1,1,1,2,1,1,1,1,1};
         /*System.out.println(HeapHelp.toString(arr));
         System.out.println("--------------------------------------------");
-        *//*heapify(arr2);
-        for (int i : arr2){
+        */
+        /*System.out.println(HeapHelp.toString(arr1));
+        System.out.println("--------------------------------------------");
+        heapify(arr1);
+        for (int i : arr1){
             System.out.print(i + " ");
         }
         System.out.println();
-        System.out.println(HeapHelp.toString(arr2));
+        System.out.println(HeapHelp.toString(arr1));
         System.out.println("--------------------------------------------");
         */
 
