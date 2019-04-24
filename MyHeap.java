@@ -39,7 +39,12 @@ public class MyHeap{
     }
 
     public static void heapify(int[] data){
-        //
+        for (int i = data.length - 1; i > -1; i--){
+            pushUp(data, i);
+        }
+        for (int i = data.length - 1; i > -1; i--){
+            pushUp(data, i);
+        }
     }
 
     private static boolean isRoot(int index){
@@ -73,20 +78,11 @@ public class MyHeap{
     }
 
     public static void main(String[] args){
-        int[] arr = {1,2,3,4,5};
+        int[] arr1 = {67, 81, 36, 69, 71, 68, 13, 64, 44, 46, 75, 35, 32, 58, 25, 50, 49, 88, 21, 65};
+        int[] arr = {76, 30, 56, 51, 48, 49, 8, 33, 72, 86, 95, 50, 14, 6, 44, 52, 91, 75, 3, 22};
         System.out.println(HeapHelp.toString(arr));
         System.out.println("--------------------------------------------");
-        pushDown(arr, arr.length, 0);
-        System.out.println(HeapHelp.toString(arr));
-        System.out.println("--------------------------------------------");
-        for (int i : arr){
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println(getParent(2));
-        System.out.println("--------------------------------------------");
-        pushUp(arr, 4);
+        heapify(arr);
         System.out.println(HeapHelp.toString(arr));
     }
 }
