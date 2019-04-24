@@ -1,5 +1,5 @@
 public class MyHeap{
-    private static void pushDown(int[]data, int size, int index){
+    private static void pushDown(int[] data, int size, int index){
         while (!(isLeaf(size, index))){
             if (data[index] > data[getChild(1, index)] && data[index] > data[getChild(2, index)]){
                 return;
@@ -25,7 +25,7 @@ public class MyHeap{
         }
     }
 
-    private static void pushUp(int[]data, int index){
+    private static void pushUp(int[] data, int index){
         while (!(isRoot(index))){
             if (data[index] < data[getParent(index)]){
                 return;
@@ -36,6 +36,10 @@ public class MyHeap{
                 index = getParent(index);
             }
         }
+    }
+
+    public static void heapify(int[] data){
+        //
     }
 
     private static boolean isRoot(int index){
